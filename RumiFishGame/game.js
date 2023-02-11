@@ -42,6 +42,7 @@ class RumiFish {
 		this.x = this.width;
 		this.y = canvas.height / 2 - this.height / 2;
 		document.addEventListener("mousemove", this.move.bind(this));
+		document.addEventListener("touchmove", this.touchMove.bind(this));
 		this.scoreSpan.innerHTML = this.score;
 	}
 
@@ -57,6 +58,16 @@ class RumiFish {
 		let rect = canvas.getBoundingClientRect();
 		this.x = event.clientX - rect.left - this.width / 2;
 		this.y = event.clientY - rect.top - this.height / 2;
+		this.x = Math.max(0, Math.min(canvas.width - this.width, this.x));
+		this.y = Math.max(0, Math.min(canvas.height - this.height, this.y));
+		this.checkForCollision();
+	}
+	touchMove(event) {
+		event.preventDefault();
+		let rect = canvas.getBoundingClientRect();
+		let touch = event.touches[0];
+		this.x = touch.clientX - rect.left - this.width / 2;
+		this.y = touch.clientY - rect.top - this.height / 2;
 		this.x = Math.max(0, Math.min(canvas.width - this.width, this.x));
 		this.y = Math.max(0, Math.min(canvas.height - this.height, this.y));
 		this.checkForCollision();
@@ -103,7 +114,6 @@ class RumiFish {
 		}
 	}
 }
-
 
 class SomeObject {
 	constructor() {
