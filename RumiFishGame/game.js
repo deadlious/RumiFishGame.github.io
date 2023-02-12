@@ -121,7 +121,7 @@ class SomeObject {
 		this.y = 50;
 		this.height = 50;
 		this.width = 50;
-		this.speed = 5 * ((1 + current_level) / 2);
+		this.speed = 5 * ((1 + current_level) / (3)) + Math.random()*(5+current_level);
 		this.image = new Image();
 		this.transparentMatrix = [];
 
