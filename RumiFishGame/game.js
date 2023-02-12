@@ -219,7 +219,7 @@ function startGameLoop() {
 }
 
 function spawnObject() {
-	if (timer % (levels.length - current_level) === 0 && timer > timer_counter) {
+	if (timer % Math.floor((levels.length)/2 - current_level/2 + 1) === 0 && timer > timer_counter) {
 		let randomNum = Math.floor(Math.random() * 3);
 		let x = canvas.width;
 		let y = Math.floor(Math.random() * canvas.height);
